@@ -1,0 +1,24 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^6.6.8",
+    "@types/node": "^18",
+    "nuxt": "^3.4.2",
+    "sass": "^1.62.1"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.4.9",
+    "flowbite": "^1.6.5",
+    "flowbite-vue": "^0.0.10",
+    "nuxt-swiper": "^1.1.0",
+    "typescript": "^5.0.4"
+  }
+}
