@@ -5,9 +5,7 @@
 </template>
 
 <script setup>
-import ScenarioList from "~/components/scenarioList.vue";
+import ScenarioList from '~/components/scenarioList.vue'
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
