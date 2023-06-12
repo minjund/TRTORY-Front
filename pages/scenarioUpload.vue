@@ -176,11 +176,6 @@
     </form>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'scenarioDetail',
-}
-</script>
+<script setup></script>
 
 <style scoped></style>
