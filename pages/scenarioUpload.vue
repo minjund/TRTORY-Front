@@ -1,5 +1,10 @@
 <template>
   <div class="container mt-6">
+    <label
+      for="first_name"
+      class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+      >썸네일러
+    </label>
     <div class="flex items-center justify-center">
       <label
         for="dropzone-file"
@@ -29,106 +34,103 @@
       </label>
     </div>
 
-    <form>
-      <div class="mb-6 grid gap-6 md:grid-cols-2">
-        <div>
-          <label
-            for="first_name"
-            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-            >First name</label
-          >
-          <input
-            type="text"
-            id="first_name"
-            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-            placeholder="John"
-            required />
-        </div>
-        <div>
-          <label
-            for="last_name"
-            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-            >Last name</label
-          >
-          <input
-            type="text"
-            id="last_name"
-            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-            placeholder="Doe"
-            required />
-        </div>
-        <div>
-          <label
-            for="company"
-            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-            >Company</label
-          >
-          <input
-            type="text"
-            id="company"
-            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-            placeholder="Flowbite"
-            required />
-        </div>
-        <div>
-          <label
-            for="phone"
-            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-            >Phone number</label
-          >
-          <input
-            type="tel"
-            id="phone"
-            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-            placeholder="123-45-678"
-            pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
-            required />
-        </div>
-        <div>
-          <label
-            for="website"
-            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-            >Website URL</label
-          >
-          <input
-            type="url"
-            id="website"
-            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-            placeholder="flowbite.com"
-            required />
-        </div>
-        <div>
-          <label
-            for="visitors"
-            class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-            >Unique visitors (per month)</label
-          >
-          <input
-            type="number"
-            id="visitors"
-            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-            placeholder=""
-            required />
-        </div>
+    <form class="mt-2">
+      <div class="mb-6">
+        <label
+          for="gameType"
+          class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+          >게임 종류</label
+        >
+        <input
+          type="text"
+          id="gameType"
+          class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          placeholder="이 게임은 아주 좋은 게임 입니다."
+          required />
       </div>
       <div class="mb-6">
         <label
           for="email"
           class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-          >Email address</label
+          >시나리오 내용(마크다운 에디터로)</label
         >
         <input
-          type="email"
+          type="text"
           id="email"
           class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-          placeholder="john.doe@company.com"
+          placeholder="이 게임은 아주 좋은 게임 입니다."
+          required />
+      </div>
+      <div class="mb-6">
+        <label
+          for="email"
+          class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+          >사용되는 룰</label
+        >
+        <input
+          type="text"
+          id="email"
+          class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          placeholder="이 게임은 아주 좋은 게임 입니다."
+          required />
+      </div>
+      <div class="mb-6">
+        <label
+          for="email"
+          class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+          >필요한 인원 수</label
+        >
+        <input
+          type="text"
+          id="email"
+          class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          placeholder="이 게임은 아주 좋은 게임 입니다."
+          required />
+      </div>
+      <div class="mb-6">
+        <label
+          for="email"
+          class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+          >키퍼링 난이도</label
+        >
+        <input
+          type="text"
+          id="email"
+          class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          placeholder="이 게임은 아주 좋은 게임 입니다."
+          required />
+      </div>
+      <div class="mb-6">
+        <label
+          for="email"
+          class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+          >키퍼링 난이도</label
+        >
+        <input
+          type="text"
+          id="email"
+          class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          placeholder="이 게임은 아주 좋은 게임 입니다."
+          required />
+      </div>
+      <div class="mb-6">
+        <label
+          for="email"
+          class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+          >키퍼링 난이도</label
+        >
+        <input
+          type="text"
+          id="email"
+          class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          placeholder="이 게임은 아주 좋은 게임 입니다."
           required />
       </div>
       <div class="mb-6">
         <label
           for="password"
           class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-          >Password</label
+          >제작자의 주의 사항</label
         >
         <input
           type="password"
