@@ -50,6 +50,19 @@
       </div>
       <div class="mb-6">
         <label
+          for="gameType"
+          class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+          >게임 한줄 설명</label
+        >
+        <input
+          type="text"
+          id="gameType"
+          class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+          placeholder="이 게임은 아주 좋은 게임 입니다."
+          required />
+      </div>
+      <div class="mb-6">
+        <label
           for="email"
           class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
           >시나리오 내용(마크다운 에디터로)</label
@@ -91,7 +104,7 @@
         <label
           for="email"
           class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-          >키퍼링 난이도</label
+          >플레이 난이도</label
         >
         <input
           type="text"
@@ -117,7 +130,7 @@
         <label
           for="email"
           class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-          >키퍼링 난이도</label
+          >예상 플레이 시간</label
         >
         <input
           type="text"
@@ -133,7 +146,7 @@
           >제작자의 주의 사항</label
         >
         <input
-          type="password"
+          type="text"
           id="password"
           class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
           placeholder="•••••••••"
@@ -143,13 +156,13 @@
         <label
           for="confirm_password"
           class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-          >Confirm password</label
+          >추천 기능</label
         >
         <input
-          type="password"
+          type="text"
           id="confirm_password"
           class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-          placeholder="•••••••••"
+          placeholder=""
           required />
       </div>
       <div class="mb-6 flex items-start">
@@ -164,10 +177,10 @@
         <label
           for="remember"
           class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >I agree with the
+          >이 시나리오는
           <a href="#" class="text-blue-600 hover:underline dark:text-blue-500"
-            >terms and conditions</a
-          >.</label
+            >무료 배포</a
+          >에 동의 합니다.</label
         >
       </div>
       <button
