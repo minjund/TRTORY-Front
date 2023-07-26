@@ -9,10 +9,15 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@nuxtjs/fontawesome": "^1.1.2",
     "@nuxtjs/tailwindcss": "^6.6.8",
     "@types/node": "^18",
     "@typescript-eslint/eslint-plugin": "^5.59.9",
     "@typescript-eslint/parser": "^5.59.9",
+    "add": "^2.0.6",
     "eslint": "^8.42.0",
     "eslint-plugin-vue": "^9.14.1",
     "nuxt": "^3.4.2",
@@ -21,11 +26,21 @@
     "sass": "^1.62.1"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-brands-svg-icons": "^6.2.1",
+    "@fortawesome/vue-fontawesome": "^3.0.3",
     "@nuxtjs/eslint-module": "^4.1.0",
     "@pinia/nuxt": "^0.4.9",
+    "@tiptap/pm": "^2.0.4",
+    "@tiptap/starter-kit": "^2.0.4",
+    "@tiptap/vue-3": "^2.0.4",
     "flowbite": "^1.6.5",
     "flowbite-vue": "^0.0.10",
+    "install": "^0.13.0",
+    "npm": "^9.8.1",
     "nuxt-swiper": "^1.1.0",
+    "tiptap": "^1.32.2",
+    "tiptap-extensions": "^1.35.2",
     "typescript": "^5.0.4"
   }
 }
