@@ -1,57 +1,35 @@
+<script setup>
+import { ref } from 'vue'
+
+const stars = ref(5)
+const selectedStars = ref(0)
+const keeperingLevel = ref(0)
+function isStarSelected(index) {
+  return index < this.selectedStars
+}
+// 별표 클릭 이벤트를 처리합니다.
+function toggleStar(index) {
+  this.selectedStars = index + 1
+}
+function isKeeperSelect(index) {
+  return index < this.keeperingLevel
+}
+// 별표 클릭 이벤트를 처리합니다.
+
+function keeperToggle(index) {
+  this.keeperingLevel = index + 1
+}
+</script>
+
 <template>
   <div class="container mt-6">
-    <ol
-      class="mb-5 flex items-center justify-center space-x-2 rounded-lg text-center text-sm font-medium text-gray-500 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 sm:space-x-4 sm:text-base">
-      <li class="flex items-center text-blue-600 dark:text-blue-500">
-        <span
-          class="mr-2 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-blue-600 text-xs dark:border-blue-500">
-          1
-        </span>
-        게임 설정
-        <svg
-          class="ml-2 h-3 w-3 sm:ml-4"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 12 10">
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="m7 9 4-4-4-4M1 9l4-4-4-4" />
-        </svg>
-      </li>
-      <li class="flex items-center">
-        <span
-          class="mr-2 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-gray-500 text-xs dark:border-gray-400">
-          2
-        </span>
-        게임
-        <span class="hidden sm:ml-2 sm:inline-flex">내용 작성</span>
-        <svg
-          class="ml-2 h-3 w-3 sm:ml-4"
-          aria-hidden="true"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 12 10">
-          <path
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="m7 9 4-4-4-4M1 9l4-4-4-4" />
-        </svg>
-      </li>
-      <li class="flex items-center">
-        <span
-          class="mr-2 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-gray-500 text-xs dark:border-gray-400">
-          3
-        </span>
-        작성 내용 확인
-      </li>
-    </ol>
-
+    <ato-step-bar
+      step="1"
+      :contents="[
+        { step: '1', title: '게임 설정' },
+        { step: '2', title: '게임 내용 작성' },
+        { step: '3', title: '작성 내용 확인' },
+      ]" />
     <label
       for="first_name"
       class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
@@ -204,24 +182,24 @@
           placeholder=""
           required />
       </div>
-      <div class="mb-6 flex items-start">
-        <div class="flex h-5 items-center">
-          <input
-            id="remember"
-            type="checkbox"
-            value=""
-            class="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-            required />
-        </div>
-        <label
-          for="remember"
-          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >이 시나리오는
-          <a href="#" class="text-blue-600 hover:underline dark:text-blue-500"
-            >무료 배포</a
-          >에 동의 합니다.</label
-        >
-      </div>
+      <!--      <div class="mb-6 flex items-start">-->
+      <!--        <div class="flex h-5 items-center">-->
+      <!--          <input-->
+      <!--            id="remember"-->
+      <!--            type="checkbox"-->
+      <!--            value=""-->
+      <!--            class="focus:ring-3 h-4 w-4 rounded border border-gray-300 bg-gray-50 focus:ring-blue-300 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"-->
+      <!--            required />-->
+      <!--        </div>-->
+      <!--        <label-->
+      <!--          for="remember"-->
+      <!--          class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"-->
+      <!--          >이 시나리오는-->
+      <!--          <a href="#" class="text-blue-600 hover:underline dark:text-blue-500"-->
+      <!--            >무료 배포</a-->
+      <!--          >에 동의 합니다.</label-->
+      <!--        >-->
+      <!--      </div>-->
       <button
         type="submit"
         class="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:w-auto">
@@ -230,27 +208,5 @@
     </form>
   </div>
 </template>
-<script setup>
-import { ref } from 'vue'
-
-const stars = ref(5)
-const selectedStars = ref(0)
-const keeperingLevel = ref(0)
-function isStarSelected(index) {
-  return index < this.selectedStars
-}
-// 별표 클릭 이벤트를 처리합니다.
-function toggleStar(index) {
-  this.selectedStars = index + 1
-}
-function isKeeperSelect(index) {
-  return index < this.keeperingLevel
-}
-// 별표 클릭 이벤트를 처리합니다.
-
-function keeperToggle(index) {
-  this.keeperingLevel = index + 1
-}
-</script>
 
 <style scoped></style>
