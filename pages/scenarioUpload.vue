@@ -9,16 +9,12 @@ function fnStepChange(stepChange) {
 
 <template>
   <div class="container mt-6">
-    <ato-step-bar
-      :step="step"
-      :contents="[
-        { step: '1', title: '게임 설정' },
-        { step: '2', title: '게임 내용 작성' },
-        { step: '3', title: '작성 내용 확인' },
-      ]" />
-    <org-scenario-game-setting></org-scenario-game-setting>
-    <org-scenario-senario-contents></org-scenario-senario-contents>
-    <org-scenario-senario-confirm></org-scenario-senario-confirm>
+    <ato-tiptap-editor></ato-tiptap-editor>
+    <button
+      type="submit"
+      class="mt-2 w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:w-auto">
+      다음 단계
+    </button>
   </div>
 </template>
 

@@ -110,11 +110,17 @@
 <script setup>
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
+import { Heading } from '@tiptap/extension-heading'
 import StarterKit from '@tiptap/starter-kit'
 
 const editor = useEditor({
-  content: '<h1>I’m running Tiptap with Vue.js. 🎉</h1>',
-  extensions: [StarterKit],
+  extensions: [StarterKit, Heading],
+  content: `
+        <h1>This is a 1st level heading</h1>
+        <h2>This is a 2nd level heading</h2>
+        <h3>This is a 3rd level heading</h3>
+        <h4>This 4th level heading will be converted to a paragraph, because levels are configured to be only 1, 2 or 3.</h4>
+      `,
 })
 </script>
 
@@ -146,35 +152,27 @@ const editor = useEditor({
 
   pre {
     background: #0d0d0d;
-    border-radius: 0.5rem;
     color: #fff;
     font-family: 'JetBrainsMono', monospace;
     padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
 
     code {
-      background: none;
       color: inherit;
-      font-size: 0.8rem;
       padding: 0;
+      background: none;
+      font-size: 0.8rem;
     }
   }
 
-  mark {
-    background-color: #faf594;
-  }
-
   img {
-    height: auto;
     max-width: 100%;
-  }
-
-  hr {
-    margin: 1rem 0;
+    height: auto;
   }
 
   blockquote {
-    border-left: 2px solid rgba(#0d0d0d, 0.1);
     padding-left: 1rem;
+    border-left: 2px solid rgba(#0d0d0d, 0.1);
   }
 
   hr {
@@ -182,33 +180,8 @@ const editor = useEditor({
     border-top: 2px solid rgba(#0d0d0d, 0.1);
     margin: 2rem 0;
   }
-
-  ul[data-type='taskList'] {
-    list-style: none;
-    padding: 0;
-
-    li {
-      align-items: center;
-      display: flex;
-
-      > label {
-        flex: 0 0 auto;
-        margin-right: 0.5rem;
-        user-select: none;
-      }
-
-      > div {
-        flex: 1 1 auto;
-      }
-    }
-  }
 }
 /* Tiptap 에디터 전체 스타일 */
-.tiptap-editor {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 10px;
-}
 
 /* Tiptap 툴바 스타일 */
 .tiptap-toolbar {
