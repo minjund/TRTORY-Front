@@ -34,8 +34,7 @@
       >
     </div>
     <div class="grid grid-cols-2 gap-4 md:grid-cols-3">
-      <figure
-        class="group relative cursor-pointer filter transition-all duration-300">
+      <figure class="group relative cursor-pointer filter">
         <a href="#">
           <img
             class="h-auto rounded-lg"
@@ -43,8 +42,10 @@
             alt="image description" />
         </a>
         <figcaption
-          class="absolute bottom-0 hidden bg-black px-4 text-lg text-white group-hover:block">
-          <p>아 슬라이딩 넣어줘 아래서 위로</p>
+          class="absolute bottom-0 hidden w-full bg-black px-4 text-lg text-white group-hover:block group-hover:decoration-8">
+          <p>
+            가나다라마바사아자차카타파s;flkdsf;kljads;lfkjas;dlkfja;sdklfja;dsklfj하
+          </p>
         </figcaption>
       </figure>
       <figure
@@ -164,4 +165,4 @@ const props = defineProps({
 })
 </script>
 
-<style scoped></style>
+<style></style>

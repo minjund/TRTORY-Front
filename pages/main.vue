@@ -88,7 +88,7 @@
       </div>
     </div>
   </div>
-  <scenario-list :show-detail-yn="false"></scenario-list>
+  <org-scenario-list :show-detail-yn="false"></org-scenario-list>
 </template>
 <script setup>
 function awd() {
