@@ -4,13 +4,12 @@
       <label
         for="email"
         class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-        >이메일</label
+        >ID</label
       >
       <input
-        type="email"
-        id="email"
+        type="text"
+        id="id"
         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light dark:focus:border-blue-500 dark:focus:ring-blue-500"
-        placeholder="name@flowbite.com"
         required />
     </div>
     <div class="mb-6">
@@ -30,6 +29,18 @@
         for="repeat-password"
         class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
         >패스워드 확인</label
+      >
+      <input
+        type="password"
+        id="repeat-password"
+        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light dark:focus:border-blue-500 dark:focus:ring-blue-500"
+        required />
+    </div>
+    <div class="mb-6">
+      <label
+        for="repeat-password"
+        class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+        >닉네임</label
       >
       <input
         type="password"
