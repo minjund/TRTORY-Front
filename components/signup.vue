@@ -8,7 +8,7 @@
       >
       <input
         type="text"
-        id="id"
+        v-model="user_id"
         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light dark:focus:border-blue-500 dark:focus:ring-blue-500"
         required />
     </div>
@@ -20,7 +20,6 @@
       >
       <input
         type="password"
-        id="password"
         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light dark:focus:border-blue-500 dark:focus:ring-blue-500"
         required />
     </div>
@@ -32,7 +31,7 @@
       >
       <input
         type="password"
-        id="repeat-password"
+        v-model="user_pw"
         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light dark:focus:border-blue-500 dark:focus:ring-blue-500"
         required />
     </div>
@@ -43,8 +42,8 @@
         >닉네임</label
       >
       <input
-        type="password"
-        id="repeat-password"
+        type="text"
+        v-model="user_nickname"
         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light dark:focus:border-blue-500 dark:focus:ring-blue-500"
         required />
     </div>
@@ -55,15 +54,10 @@
         >디스코드 계정</label
       >
       <input
-        type="password"
-        id="repeat-password"
-        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light dark:focus:border-blue-500 dark:focus:ring-blue-500"
-        required />
+        type="text"
+        v-model="user_discord_id"
+        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light dark:focus:border-blue-500 dark:focus:ring-blue-500" />
     </div>
-    <!--    <div class="mb-6">-->
-    <!--      <label for="repeat-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">이메일 인증 코드</label>-->
-    <!--      <input type="password" id="repeat-password" class="w-full shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light" required>-->
-    <!--    </div>-->
     <div class="mb-6 flex items-start">
       <div class="flex h-5 items-center">
         <input
@@ -85,17 +79,52 @@
     </div>
     <button
       type="submit"
+      @click="signup()"
       class="mb-6 w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
       회원가입 하기
     </button>
     <button
-      @click="$emit('signupClick')"
       class="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 dark:hover:bg-blue-700">
       로그인 하러 가기
     </button>
   </form>
 </template>
 
-<script setup></script>
+<script setup>
+import { ref } from 'vue'
+let paramsQuery = ref({})
+let user_id = ref('')
+let user_pw = ref('')
+let user_discord_id = ref('')
+let user_nickname = ref('')
+async function signup() {
+  try {
+    paramsQuery.value = {
+      user_id: user_id.value,
+      user_pw: user_pw.value,
+      user_discord_id: user_discord_id.value,
+      user_nickname: user_nickname.value,
+    }
+    const result = await $fetch('http://localhost:8080/account/signup', {
+      method: 'post',
+      body: paramsQuery.value,
+    })
+    alert(result == 100 ? '회원가입 되었습니다.' : '회원가입 안되었습니다.')
+  } catch (err) {
+    console.error('Axios 에러:', err)
+    if (err.response) {
+      // 서버가 응답한 경우 (상태 코드 확인)
+      console.error('응답 데이터:', err.response.data)
+      console.error('상태 코드:', err.response.status)
+    } else if (err.request) {
+      // 요청이 전송되지 않은 경우
+      console.error('요청이 전송되지 않음')
+    } else {
+      console.error('에러 메시지:', err.message)
+    }
+    alert('에러난다 페이지 전환 왜 되는거지 이거')
+  }
+}
+</script>
 
 <style scoped></style>

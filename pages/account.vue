@@ -4,6 +4,7 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 const isSingup = ref(false)
 function signupClick() {
   isSingup.value = !isSingup.value
