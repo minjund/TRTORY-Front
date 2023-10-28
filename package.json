@@ -36,7 +36,6 @@
     "@tiptap/pm": "^2.0.4",
     "@tiptap/starter-kit": "^2.0.4",
     "@tiptap/vue-3": "^2.0.4",
-    "axios": "^1.5.1",
     "flowbite": "^1.6.5",
     "flowbite-vue": "^0.0.10",
     "install": "^0.13.0",

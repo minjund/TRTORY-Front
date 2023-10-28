@@ -8,7 +8,7 @@
       >
       <input
         type="text"
-        v-model="user_id"
+        v-model="userId"
         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light dark:focus:border-blue-500 dark:focus:ring-blue-500"
         required />
     </div>
@@ -31,7 +31,7 @@
       >
       <input
         type="password"
-        v-model="user_pw"
+        v-model="userPw"
         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light dark:focus:border-blue-500 dark:focus:ring-blue-500"
         required />
     </div>
@@ -43,7 +43,7 @@
       >
       <input
         type="text"
-        v-model="user_nickname"
+        v-model="userNickname"
         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light dark:focus:border-blue-500 dark:focus:ring-blue-500"
         required />
     </div>
@@ -55,7 +55,7 @@
       >
       <input
         type="text"
-        v-model="user_discord_id"
+        v-model="userDiscordId"
         class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 shadow-sm focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:shadow-sm-light dark:focus:border-blue-500 dark:focus:ring-blue-500" />
     </div>
     <div class="mb-6 flex items-start">
@@ -70,12 +70,11 @@
       <label
         for="terms"
         class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-        >아
+        >티알토리
         <a href="#" class="text-blue-600 hover:underline dark:text-blue-500"
           >이용약관</a
         >
-        이거 동의 하면 뭐 좋은데 안해도 됨</label
-      >
+      </label>
     </div>
     <button
       type="submit"
@@ -93,17 +92,17 @@
 <script setup>
 import { ref } from 'vue'
 let paramsQuery = ref({})
-let user_id = ref('')
-let user_pw = ref('')
-let user_discord_id = ref('')
-let user_nickname = ref('')
+let userId = ref('')
+let userPw = ref('')
+let userDiscordId = ref('')
+let userNickname = ref('')
 async function signup() {
   try {
     paramsQuery.value = {
-      user_id: user_id.value,
-      user_pw: user_pw.value,
-      user_discord_id: user_discord_id.value,
-      user_nickname: user_nickname.value,
+      userId: userId.value,
+      userPw: userPw.value,
+      userDiscordId: userDiscordId.value,
+      userNickname: userNickname.value,
     }
     const result = await $fetch('http://localhost:8080/account/signup', {
       method: 'post',
@@ -122,7 +121,6 @@ async function signup() {
     } else {
       console.error('에러 메시지:', err.message)
     }
-    alert('에러난다 페이지 전환 왜 되는거지 이거')
   }
 }
 </script>
