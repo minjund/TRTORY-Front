@@ -43,6 +43,7 @@
     "nuxt-swiper": "^1.1.0",
     "tiptap": "^1.32.2",
     "tiptap-extensions": "^1.35.2",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "vue-router": "^4.0.13"
   }
 }

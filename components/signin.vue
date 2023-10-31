@@ -32,7 +32,7 @@
       로그인 하기
     </button>
     <button
-      @click="$emit('signupClick')"
+      @click="$emit('loginClick')"
       class="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 dark:hover:bg-blue-700">
       회원가입 하기
     </button>
@@ -45,6 +45,7 @@ import { ref } from 'vue'
 let paramsQuery = ref({})
 const userId = ref('')
 const userPw = ref('')
+const router = useRouter()
 
 async function signInCheck() {
   try {
@@ -52,8 +53,6 @@ async function signInCheck() {
       userId: userId.value,
       userPw: userPw.value,
     }
-    console.log(paramsQuery.value)
-    alert('awd')
     const result = await $fetch(
       //'https://dbf4-121-138-48-50.ngrok-free.app/account/signIn',
       'localhost:8080/account/signIn',
@@ -62,12 +61,13 @@ async function signInCheck() {
         params: paramsQuery.value,
       }
     )
-
-    if (result) {
-      //this.$router.push('/')
+    if (result == 100) {
       alert('로그인 성공')
+
+      await router.push('/main')
     } else {
       alert('회원 정보가 없습니다. 회원가입 해주세요')
+      await router.push('/main')
     }
   } catch (err) {
     console.error('Axios 에러:', err)

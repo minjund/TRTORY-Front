@@ -83,6 +83,7 @@
       회원가입 하기
     </button>
     <button
+      @click="$emit('loginClick')"
       class="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 dark:hover:bg-blue-700">
       로그인 하러 가기
     </button>
@@ -96,6 +97,7 @@ let userId = ref('')
 let userPw = ref('')
 let userDiscordId = ref('')
 let userNickname = ref('')
+
 async function signup() {
   try {
     paramsQuery.value = {
@@ -104,11 +106,15 @@ async function signup() {
       userDiscordId: userDiscordId.value,
       userNickname: userNickname.value,
     }
-    const result = await $fetch('http://localhost:8080/account/signup', {
+    await $fetch('http://localhost:8080/account/signup', {
       method: 'post',
       body: paramsQuery.value,
+    }).then((data) => {
+      // 데이터 처리 로직
+      alert(data)
+      // Vue Router의 push 메서드를 사용하여 페이지 이동
+      alert(data == 100 ? '회원가입 되었습니다.' : '회원가입 안되었습니다.')
     })
-    alert(result == 100 ? '회원가입 되었습니다.' : '회원가입 안되었습니다.')
   } catch (err) {
     console.error('Axios 에러:', err)
     if (err.response) {
