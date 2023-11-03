@@ -53,14 +53,10 @@ async function signInCheck() {
       userId: userId.value,
       userPw: userPw.value,
     }
-    const result = await $fetch(
-      //'https://dbf4-121-138-48-50.ngrok-free.app/account/signIn',
-      'localhost:8080/account/signIn',
-      {
-        method: 'get',
-        params: paramsQuery.value,
-      }
-    )
+    const result = await $fetch('http://localhost:8080/account/signIn', {
+      method: 'get',
+      params: paramsQuery.value,
+    })
     if (result == 100) {
       alert('로그인 성공')
 

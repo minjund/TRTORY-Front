@@ -90,9 +90,5 @@
   </div>
   <org-scenario-list :show-detail-yn="false"></org-scenario-list>
 </template>
-<script setup>
-function awd() {
-  alert('awldjawdoij')
-}
-</script>
+<script setup></script>
 <style scoped></style>

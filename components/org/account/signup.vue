@@ -97,7 +97,7 @@ let userId = ref('')
 let userPw = ref('')
 let userDiscordId = ref('')
 let userNickname = ref('')
-
+const router = useRouter()
 async function signup() {
   try {
     paramsQuery.value = {
@@ -109,12 +109,12 @@ async function signup() {
     await $fetch('http://localhost:8080/account/signup', {
       method: 'post',
       body: paramsQuery.value,
-    }).then((data) => {
-      // 데이터 처리 로직
-      alert(data)
+    }).then(async (data) => {
       // Vue Router의 push 메서드를 사용하여 페이지 이동
       alert(data == 100 ? '회원가입 되었습니다.' : '회원가입 안되었습니다.')
     })
+    console.log(router)
+    await router.replace('/main')
   } catch (err) {
     console.error('Axios 에러:', err)
     if (err.response) {

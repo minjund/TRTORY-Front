@@ -1,6 +1,10 @@
 <template>
-  <signin v-if="!isLogin" @loginClick="loginClick"></signin>
-  <signup v-if="isLogin" @loginClick="loginClick"></signup>
+  <org-account-signin
+    v-if="!isLogin"
+    @loginClick="loginClick"></org-account-signin>
+  <org-account-signup
+    v-if="isLogin"
+    @loginClick="loginClick"></org-account-signup>
 </template>
 
 <script setup>
