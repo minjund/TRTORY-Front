@@ -46,24 +46,27 @@ let paramsQuery = ref({})
 const userId = ref('')
 const userPw = ref('')
 const router = useRouter()
-
-async function signInCheck() {
+function signInCheck() {
   try {
     paramsQuery.value = {
       userId: userId.value,
       userPw: userPw.value,
     }
-    const result = await $fetch('http://localhost:8080/account/signIn', {
-      method: 'get',
-      params: paramsQuery.value,
-    })
-    if (result == 100) {
-      alert('로그인 성공')
+    const result = $fetch(
+      'http://localhost:8080/account/signIn?userId=12345&userPw=12345',
+      {
+        method: 'GET',
+        query: paramsQuery.value,
+      }
+    ).then((response) => response.json())
 
-      await router.push('/main')
+    if (result[0]) {
+      alert('로그인 성공')
+      router.push('/main')
+      this.$emit('signInCheck', 102)
     } else {
       alert('회원 정보가 없습니다. 회원가입 해주세요')
-      await router.push('/main')
+      this.$emit('signInCheck', 99)
     }
   } catch (err) {
     console.error('Axios 에러:', err)
@@ -77,7 +80,6 @@ async function signInCheck() {
     } else {
       console.error('에러 메시지:', err.message)
     }
-    alert('에러난다 페이지 전환 왜 되는거지 이거')
   }
 }
 </script>
