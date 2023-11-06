@@ -1,5 +1,5 @@
 <template>
-  <form class="container mt-8 w-72 place-content-center">
+  <div class="container mt-8 w-72 place-content-center">
     <div class="mb-6">
       <label
         for="email"
@@ -87,7 +87,7 @@
       class="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 dark:hover:bg-blue-700">
       로그인 하러 가기
     </button>
-  </form>
+  </div>
 </template>
 
 <script setup>

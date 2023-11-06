@@ -1,6 +1,9 @@
 <script setup>
-import { ref } from 'vue'
-
+import { onMounted, ref } from 'vue'
+import { initFlowbite } from 'flowbite'
+onMounted(() => {
+  initFlowbite()
+})
 const step = ref('1')
 function fnStepChange(stepChange) {
   this.step = stepChange
