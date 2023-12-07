@@ -1,6 +1,7 @@
 <template>
   <div class="text-lg">
-    <Header v-if="$route.path !== '/'" class="relative" />
+    <!--    <Header v-if="$route.path !== '/'" class="relative" />-->
+    <Header class="relative" />
     <NuxtPage />
     <Footer />
   </div>

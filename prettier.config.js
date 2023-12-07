@@ -4,4 +4,4 @@ module.exports = {
   bracketSameLine: true, // > 이거 표시 설정
   semi: false,
   singleQuote: true,
-}
+};
