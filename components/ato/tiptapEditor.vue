@@ -1,49 +1,283 @@
 <script setup>
-import { TiptapCollabProvider } from '@hocuspocus/provider'
 import { Collaboration } from '@tiptap/extension-collaboration'
+import CollaborationCursor from '@tiptap/extension-collaboration-cursor'
 import StarterKit from '@tiptap/starter-kit'
+import TextAlign from '@tiptap/extension-text-align'
+import Document from '@tiptap/extension-document'
+import Code from '@tiptap/extension-code'
+import Paragraph from '@tiptap/extension-paragraph'
+import Text from '@tiptap/extension-text'
+import Typography from '@tiptap/extension-typography'
 import { EditorContent, useEditor } from '@tiptap/vue-3'
 import * as Y from 'yjs'
+import * as WebSocket from 'websocket'
 import { onMounted, onUnmounted } from 'vue'
+import { HocuspocusProvider } from '@hocuspocus/provider'
 
-let provider = TiptapCollabProvider | undefined
-
+const CustomDocument = Document.extend({
+  content: 'heading block*',
+})
 const doc = new Y.Doc()
+let provider = null
 
+let editor = null
+console.log('실횅됨22')
 onMounted(() => {
-  provider = new TiptapCollabProvider({
-    name: 'TRTORY', // any identifier - all connections sharing the same identifier will be synced
-    appId: 'pkr7q5m4', // replace with YOUR_APP_ID
-    token:
-      'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MDE5NjQxODEsIm5iZiI6MTcwMTk2NDE4MSwiZXhwIjoxNzAyMDUwNTgxLCJpc3MiOiJodHRwczovL2NvbGxhYi50aXB0YXAuZGV2IiwiYXVkIjoicGtyN3E1bTQifQ.Mot_Wh9Pb9yL7oN6LrbPfsv3mKQh3ymNRRMMr9kzMVc', // replace with your JWT
-    document: doc,
+  provider = new HocuspocusProvider({
+    url: 'ws://127.0.0.1:7000',
+    name: 'trtory',
   })
 })
-
-onUnmounted(() => provider?.destroy())
-
-const editor = useEditor({
-  // make sure that you don't use `content` property anymore!
-  // If you want to add default content, feel free to just write text to the tiptap editor (i.e. editor.setContent (https://tiptap.dev/api/commands/set-content), but make sure that
-  // you do this only once per document, otherwise the content will
-  // be added again, and again, and again ..
+editor = useEditor({
   editorProps: {
     attributes: {
-      class: 'm-2 p-2 border border-black rounded-lg',
+      // class: 'm-2 p-2 border border-black rounded-lg ',
+      style: 'height: 26rem; outline: none;',
     },
   },
   extensions: [
+    TextAlign.configure({
+      types: ['heading', 'paragraph'],
+    }),
+    CustomDocument,
+    Code,
+    Paragraph,
+    Text,
+    Typography,
     StarterKit.configure({
       history: false, // important because history will now be handled by Y.js
     }),
     Collaboration.configure({
       document: doc,
     }),
+    // CollaborationCursor.configure({
+    //   provider: provider,
+    //   user: 'mjkim',
+    //   color: '#f783ac',
+    // }),
   ],
 })
+
+// onUnmounted(() => provider?.destroy())
 </script>
 
 <template>
-  <editor-content :editor="editor"></editor-content>
+  <div class="editor" v-if="editor">
+    <div>
+      <ato-tiptap-editor-menu-bar
+        class="editor__header"
+        :editor="editor"></ato-tiptap-editor-menu-bar>
+    </div>
+    <EditorContent class="editor__content" :editor="editor"></EditorContent>
+  </div>
 </template>
-<style lang="scss"></style>
+<style lang="scss">
+.editor {
+  height: 30rem;
+  background-color: #fff;
+  border: 3px solid #0d0d0d;
+  border-radius: 0.75rem;
+  color: #0d0d0d;
+  display: flex;
+  flex-direction: column;
+  max-height: 80rem;
+
+  &__header {
+    align-items: center;
+    background: #0d0d0d;
+    border-bottom: 3px solid #0d0d0d;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    padding: 0.25rem;
+  }
+
+  &__content {
+    flex: 1 1 auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 1.25rem 1rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  &__footer {
+    align-items: center;
+    border-top: 3px solid #0d0d0d;
+    color: #0d0d0d;
+    display: flex;
+    flex: 0 0 auto;
+    flex-wrap: wrap;
+    font-size: 12px;
+    font-weight: 600;
+    justify-content: space-between;
+    padding: 0.25rem 0.75rem;
+    white-space: nowrap;
+  }
+
+  /* Some information about the status */
+  &__status {
+    align-items: center;
+    border-radius: 5px;
+    display: flex;
+
+    &::before {
+      background: rgba(#0d0d0d, 0.5);
+      border-radius: 50%;
+      height: 30rem;
+      content: ' ';
+      display: inline-block;
+      flex: 0 0 auto;
+      //height: 0.5rem;
+      margin-right: 0.5rem;
+      width: 0.5rem;
+    }
+
+    &--connecting::before {
+      background: #616161;
+    }
+
+    &--connected::before {
+      background: #b9f18d;
+    }
+  }
+
+  &__name {
+    button {
+      background: none;
+      border: none;
+      border-radius: 0.4rem;
+      color: #0d0d0d;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 0.25rem 0.5rem;
+
+      &:hover {
+        background-color: #0d0d0d;
+        color: #fff;
+      }
+    }
+  }
+}
+
+/* Give a remote user a caret */
+.collaboration-cursor__caret {
+  border-left: 1px solid #0d0d0d;
+  border-right: 1px solid #0d0d0d;
+  margin-left: -1px;
+  margin-right: -1px;
+  pointer-events: none;
+  position: relative;
+  word-break: normal;
+}
+
+/* Render the username above the caret */
+.collaboration-cursor__label {
+  border-radius: 3px 3px 3px 0;
+  color: #0d0d0d;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  left: -1px;
+  line-height: normal;
+  padding: 0.1rem 0.3rem;
+  position: absolute;
+  top: -1.4em;
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* Basic editor styles */
+.tiptap {
+  > * + * {
+    margin-top: 0.75em;
+  }
+
+  ul,
+  ol {
+    padding: 0 1rem;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.1;
+  }
+
+  code {
+    background-color: rgba(#616161, 0.1);
+    color: #616161;
+  }
+
+  pre {
+    background: #0d0d0d;
+    border-radius: 0.5rem;
+    color: #fff;
+    font-family: 'JetBrainsMono', monospace;
+    padding: 0.75rem 1rem;
+
+    code {
+      background: none;
+      color: inherit;
+      font-size: 0.8rem;
+      padding: 0;
+    }
+  }
+
+  mark {
+    background-color: #faf594;
+  }
+
+  img {
+    height: auto;
+    max-width: 100%;
+  }
+
+  hr {
+    margin: 1rem 0;
+  }
+
+  blockquote {
+    border-left: 2px solid rgba(#0d0d0d, 0.1);
+    padding-left: 1rem;
+  }
+
+  hr {
+    border: none;
+    border-top: 2px solid rgba(#0d0d0d, 0.1);
+    margin: 2rem 0;
+  }
+
+  ul[data-type='taskList'] {
+    list-style: none;
+    padding: 0;
+
+    li {
+      align-items: center;
+      display: flex;
+
+      > label {
+        flex: 0 0 auto;
+        margin-right: 0.5rem;
+        user-select: none;
+      }
+
+      > div {
+        flex: 1 1 auto;
+      }
+    }
+  }
+}
+.tiptap .is-empty::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #ced4da;
+  pointer-events: none;
+  height: 0;
+}
+</style>

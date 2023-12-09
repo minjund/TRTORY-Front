@@ -88,7 +88,7 @@
   <!--      </div>-->
   <!--    </div>-->
   <!--  </div>-->
-  <org-scenario-list :show-detail-yn="false"></org-scenario-list>
+  <org-scenario-list :show-detail-yn="true"></org-scenario-list>
 </template>
 <script setup></script>
 <style scoped></style>
