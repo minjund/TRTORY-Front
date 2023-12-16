@@ -21,6 +21,7 @@ const doc = new Y.Doc()
 let provider = null
 
 let editor = null
+console.log('실횅됨22')
 onMounted(() => {
   provider = new HocuspocusProvider({
     url: 'ws://127.0.0.1:7000',
