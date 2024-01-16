@@ -3,10 +3,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "dev": "nuxt dev"
   },
   "devDependencies": {
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
